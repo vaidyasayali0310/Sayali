@@ -1,0 +1,63 @@
+CREATE DATABASE StudentDB;
+USE StudentDB;
+
+CREATE TABLE Student (
+StudentID INT PRIMARY KEY,
+Name VARCHAR(100),
+Email VARCHAR(100),
+Age INT,
+Address VARCHAR(255)
+);
+
+INSERT INTO student VALUES (1301, 'Sayali', 'Sayali@gmail.com', 19, 'Mumbai');
+
+INSERT INTO student VALUES (1302, 'Akshada', 'Akshada@gmail.com', 20, 'Delhi');
+
+INSERT INTO student VALUES (1303, 'Sanika', 'Sanika@gmail.com', 21, 'Pune');
+
+CREATE TABLE Instructor (
+InstructorID INT PRIMARY KEY,
+Name VARCHAR(100),
+Email VARCHAR(100),
+Department VARCHAR(100)
+);
+
+INSERT INTO instructor VALUES (111, 'Samiksha', 'samiksha@gmail.com', 'AI&DS');
+
+INSERT INTO instructor VALUES (222, 'Shruti', 'Shruti@gmail.com', 'AI&DS');
+
+INSERT INTO instructor VALUES (333, 'vaishnavi', 'atmaram@gmail.com', 'AI&DS');
+
+CREATE TABLE Course (
+CourseID INT PRIMARY KEY,
+CourseName VARCHAR(100),
+Credits INT,
+InstructorID INT,
+FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID)
+);
+
+INSERT INTO course VALUES (1, 'Database Systems', 9, 111);
+
+INSERT INTO course VALUES (2, 'Machine Learning', 6, 222);
+
+INSERT INTO course VALUES (3, 'Data Structures', 8, 333);
+
+CREATE TABLE Enrollment (
+EnrollmentID INT PRIMARY KEY,
+StudentID INT,
+CourseID INT,
+EnrollmentDate DATE,
+FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+
+INSERT INTO enrollment VALUES (11, 1301, 2, '2026-01-15');
+
+INSERT INTO enrollment VALUES (12, 1302, 3, '2026-02-16');
+
+INSERT INTO enrollment VALUES (13, 1303, 1, '2026-03-17');
+
+SELECT * FROM student;
+SELECT * FROM instructor;
+SELECT * FROM course;
+SELECT * FROM enrollment;
